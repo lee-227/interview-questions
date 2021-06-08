@@ -1,0 +1,24 @@
+## 优化webpack的打包体积
+- 压缩代码
+  - webpack-paralle-uglify-plugin terser-webpack-plugin 压缩js
+  - 通过 mini-css-extract-plugin 提取Chunk中的CSS代码到单独文件，通过 optimize-css-assets-webpack-plugin 插件，开启cssnano 压缩css
+- 提取页面公共资源
+  - 使用 html-webpack-externals-plugin，将基础包通过CDN引入，不打入bundle中
+  - 使用 optimization.splitChunks 进行 (公共脚本、基础包、页面公共文件) 分离 (webpack4内置)
+- Tree shaking
+  - babel-plugin-import 按需加载
+  - 打包过程中检测工程中没有引用过的模块并进行标记，在资源压缩时将它们从最终的bundle中去掉(只能对ES6 Module生效)开发中尽可能使用 ES6 Module 的模块，提高tree shaking的效率
+  - uncss 去除无用css代码
+- Scope hoisting
+  - 构建后的代码会存在大量闭包，造成体积增大，运行代码时创建的函数作用域变多，内存开销变大。Scope hoisting 将所有模块的代码按照引用顺序放在一个函数作用域里，然后适当的重命名一些变量以防止变量名冲突
+- 图片压缩
+  - 使用基于node库的imagemin(很多定制选项、可以处理多种图片格式)
+  - 配置 image-webpack-loader
+- 动态Ployfill
+  - 建议采用 polyfill-service 只给用户返回需要的polyfill，社区维护。
+  - @babel-preset-env中通过useBuiltIns:"usage" 参数来动态加载polyfill
+- 打包速度优化
+  - DllPlugin 和 DllReferencePlugin 防止每次重新构建第三方库，耗费大量时间。
+- 借助工具分析性能瓶颈
+  - speed-measure-webpack-plugin，简称SMP，分析出 webpack 打包过程中Loader和Plugin的耗时时，有助于找到构建过程中的性能瓶颈。
+  - webpack-bundle-analyzer 以树状图的形式查看每个模块体积
