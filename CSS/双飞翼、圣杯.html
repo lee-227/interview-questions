@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+    }
+    .common {
+      height: 100px;
+    }
+    #shengbei {
+      overflow: hidden;
+      padding: 0 200px;
+      min-width: 400px;
+    }
+    #shengbei .main {
+      width: 100%;
+      background: gainsboro;
+      float: left;
+    }
+    #shengbei .left {
+      width: 200px;
+      background: rebeccapurple;
+      float: left;
+      margin-left: -100%;
+      position: relative;
+      left: -200px;
+    }
+    #shengbei .right {
+      width: 200px;
+      background: rebeccapurple;
+      float: left;
+      margin-left: -200px;
+      position: relative;
+      left: 200px;
+    }
+
+    #shuangfeiyi {
+      overflow: hidden;
+    }
+    #shuangfeiyi .main {
+      width: 100%;
+      background: gainsboro;
+      float: left;
+    }
+    #shuangfeiyi .main .container {
+      padding: 0 200px;
+    }
+    #shuangfeiyi .left {
+      width: 200px;
+      background: rebeccapurple;
+      float: left;
+      margin-left: -100%;
+    }
+    #shuangfeiyi .right {
+      width: 200px;
+      background: rebeccapurple;
+      float: left;
+      margin-left: -200px;
+    }
+
+    #flex {
+      display: flex;
+    }
+    #flex .main {
+      background: gainsboro;
+      flex: 1;
+    }
+    #flex .left {
+      width: 200px;
+      background: rebeccapurple;
+    }
+    #flex .right {
+      width: 200px;
+      background: rebeccapurple;
+    }
+  </style>
+  <body>
+    <div id="shengbei">
+      <div class="main common">圣杯</div>
+      <div class="left common">left</div>
+      <div class="right common">right</div>
+    </div>
+    <div id="shuangfeiyi">
+      <div class="main common">
+        <div class="container">双飞翼</div>
+      </div>
+      <div class="left common">left</div>
+      <div class="right common">right</div>
+    </div>
+    <div id="flex">
+      <div class="left common">left</div>
+      <div class="main common">flex</div>
+      <div class="right common">right</div>
+    </div>
+  </body>
+</html>
